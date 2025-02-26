@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="file/engines/full gallery.css">
+  <link rel="icon" href="file/images/srs.ico" type="image/x-icon"> <!-- آیکون -->
+</head>
+<body>
+<div id="iframes-container"></div>
+    
+	<button id="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-adjust"></i> <!-- آیکون تغییر تم -->
+</button>
+	
+	<button class="scroll-link" onclick="scrollToFooter()">
+        <i class="fas fa-plane-departure"></i>
+    </button>
+	
+	<button id="toggle-filter-btn" onclick="toggleFilterPanel()">
+    <i class="fas fa-filter"></i> <!-- آیکون فیلتر -->
+</button>
+
+
+<div id="filter-panel" class="filter-panel">
+    <div class="filter-content">
+	 <!-- دسته "نوع کاربری" -->
+        <div class="category">
+            <h3 onclick="toggleSubmenu(this)">نوع کاربری</h3>
+            <div class="submenu">
+                <label>
+                    <input type="checkbox" value="مسکونی" onchange="updateSelectedFilters()"> مسکونی
+                </label>
+                <label>
+                    <input type="checkbox" value="ویلایی" onchange="updateSelectedFilters()"> ویلایی
+                </label>
+				<label>
+                    <input type="checkbox" value="تجاری" onchange="updateSelectedFilters()"> تجاری
+                </label>
+				<label>
+                    <input type="checkbox" value="اداری" onchange="updateSelectedFilters()"> اداری
+                </label>
+				<label>
+                    <input type="checkbox" value="خدماتی" onchange="updateSelectedFilters()"> خدماتی
+                </label>
+            </div>
+        </div>
+        <!-- دسته "مصالح" -->
+        <div class="category">
+            <h3 onclick="toggleSubmenu(this)">مصالح</h3>
+            <div class="submenu">
+                <label>
+                    <input type="checkbox" value="سنگ" onchange="updateSelectedFilters()"> سنگ
+                </label>
+                <label>
+                    <input type="checkbox" value="آجر" onchange="updateSelectedFilters()"> آجر
+                </label>
+                <label>
+                    <input type="checkbox" value="کامپوزیت" onchange="updateSelectedFilters()"> کامپوزیت
+                </label>
+				<label>
+                    <input type="checkbox" value="کاشی وسرامیک" onchange="updateSelectedFilters()"> کاشی وسرامیک
+                </label>
+				<label>
+                    <input type="checkbox" value="پارکت" onchange="updateSelectedFilters()"> پارکت
+                </label>
+				<label>
+                    <input type="checkbox" value="کف پوش" onchange="updateSelectedFilters()"> کف پوش
+                </label>
+				<label>
+                    <input type="checkbox" value="گچ برگ" onchange="updateSelectedFilters()"> گچ برگ
+                </label>
+				<label>
+                    <input type="checkbox" value="پی وی سی" onchange="updateSelectedFilters()"> پی وی سی
+                </label>
+				<label>
+                    <input type="checkbox" value="پنل گچی" onchange="updateSelectedFilters()"> پنل گچی
+                </label>
+				<label>
+                    <input type="checkbox" value="کاغذ دیواری" onchange="updateSelectedFilters()"> کاغذ دیواری
+				<label>
+                    <input type="checkbox" value="پلاستر" onchange="updateSelectedFilters()"> پلاستر
+                </label>
+				<label>
+                    <input type="checkbox" value="چوب" onchange="updateSelectedFilters()"> چوب
+                </label>
+            </label></div>
+        </div>
+		 <!-- دسته نوع سازه" -->
+        <div class="category">
+            <h3 onclick="toggleSubmenu(this)">نوع سازه</h3>
+            <div class="submenu">
+                <label>
+                    <input type="checkbox" value="بتنی" onchange="updateSelectedFilters()"> بتنی
+                </label>
+                <label>
+                    <input type="checkbox" value="فولادی" onchange="updateSelectedFilters()"> فولادی
+                </label>
+				<label>
+                    <input type="checkbox" value="lsf" onchange="updateSelectedFilters()"> lsf
+                </label>
+            </div>
+        </div>
+		<!-- دسته تراکم" -->
+        <div class="category">
+            <h3 onclick="toggleSubmenu(this)">نوع تراکم</h3>
+            <div class="submenu">
+                <label>
+                    <input type="checkbox" value="کوتاه مرتبه" onchange="updateSelectedFilters()"> کوتاه مرتبه
+                </label>
+                <label>
+                    <input type="checkbox" value="میان مرتبه" onchange="updateSelectedFilters()"> میان مرتبه
+                </label>
+				<label>
+                    <input type="checkbox" value="بلند مرتبه" onchange="updateSelectedFilters()"> بلند مرتبه
+            </label></div>
+        </div>
+		 <!--دسته بندی وضع موجود" -->
+        <div class="category">
+            <h3 onclick="toggleSubmenu(this)">وضع موجود</h3>
+            <div class="submenu">
+                <label>
+                    <input type="checkbox" value="بازسازی" onchange="updateSelectedFilters()"> بازسازی
+                </label>
+                <label>
+                    <input type="checkbox" value="نوسازی" onchange="updateSelectedFilters()"> نوسازی
+                </label>
+				<label>
+                    <input type="checkbox" value="نیمه کاره" onchange="updateSelectedFilters()"> نیمه کاره
+                </label>
+				<label>
+                    <input type="checkbox" value="فاز صفر" onchange="updateSelectedFilters()"> فاز صفر
+                </label>
+            </div>
+        </div>
+<!--دسته بندی انواع پروژه" -->
+        <div class="category">
+            <h3 onclick="toggleSubmenu(this)">انواع پروژه</h3>
+            <div class="submenu">
+                <label>
+                    <input type="checkbox" value="طراحی داخلی" onchange="updateSelectedFilters()"> طراحی داخلی
+                </label>
+                <label>
+                    <input type="checkbox" value="طراحی نما" onchange="updateSelectedFilters()"> طراحی نما
+                </label>
+				<label>
+                    <input type="checkbox" value="طراحی محوطه سازی" onchange="updateSelectedFilters()"> طراحی محوطه سازی
+                </label>
+				<label>
+                    <input type="checkbox" value="طراحی فضای سبز" onchange="updateSelectedFilters()"> طراحی فضای سبز
+                </label>
+            </div>
+        </div>
+        <!-- دسته "سبک" -->
+        <div class="category">
+            <h3 onclick="toggleSubmenu(this)">سبک</h3>
+            <div class="submenu">
+                <label>
+                    <input type="checkbox" value="مدرن" onchange="updateSelectedFilters()"> مدرن
+                </label>
+                <label>
+                    <input type="checkbox" value="کلاسیک" onchange="updateSelectedFilters()"> کلاسیک
+                </label>
+				<label>
+                    <input type="checkbox" value="ایرانی" onchange="updateSelectedFilters()"> ایرانی
+                </label>
+				<label>
+                    <input type="checkbox" value="های تک" onchange="updateSelectedFilters()"> های تک
+                </label>
+            </div>
+        </div>
+
+        <!-- دکمه‌های عملیات -->
+        <div class="actions">
+            <button class="filter-action-btn" onclick="applyFilters()">اعمال فیلتر</button>
+            <button class="filter-action-btn" onclick="resetFilters()">نمایش همه</button>
+        </div>
+    </div>
+</div>
+
+ 
+	
+	<button class="add-rezerve-button" onclick="openModal('8MNJzq9TWW3bsjBs9')">
+    <i class="fas fa-file-alt"></i> <!-- آیکون فرم -->
+</button>
+<!-- فرم سفارش -->
+<div id="orderFormModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <iframe 
+    src="bussines masage.html" 
+    style="width: 100%; height: 100%; border: none;">
+</iframe>
+  </div>
+</div>
+
+ <div id="footer" class="footer">
+        
+"مرز آفرینش "     در انتظار خلقی نو
+    </div>
+	
+    
+<button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+  
+  <div id="sidebar">
+    <header>
+      <span>سید رضا سلجوقی</span>
+    </header>
+    <div class="content">
+      
+            <iframe class="sidebar-iframe" src="https://gzwooopgpw5fmzobq5lmsw.on.drv.tw/slider/07/"></iframe>
+        
+     <h1 class="glowIn">سیدرضا سلجوقی</h1>
+<a href="#" class="btn-shine">مهندس معمار و مدیر پروژه های ساختمانی</a>
+
+
+
+
+      <div class="accordion">
+   <button>منو</button>
+  <div class="panel">
+    <a href="https://p88lbdiri8mwtznnslaoja.on.drv.tw/SRS/proff.html"><i class="fas fa-link"></i> پورتفولیو</a>
+    <a href="https://ztdc1xwgjfzz7oaasrqoaw.on.drv.tw/SRS/full gallery.html"><i class="fas fa-link"></i>گالری اصلی</a>
+    <a href="https://ztdc1xwgjfzz7oaasrqoaw.on.drv.tw/SRS/map gallery.html"><i class="fas fa-link"></i>نقشه گالری</a>
+  
+</div>
+</div>
+
+
+
+      <div class="clock" id="clock">00:00:00</div>
+<div class="footer">
+<div class ="frame">
+<a href="https://xhoof2n1j0ppxd47m0ggpa.on.drv.tw/G/" class="btn">
+ <i class="fa fa-images" style="color: #ff8b8b;"></i>
+</a>
+    <a href="https://p88lbdiri8mwtznnslaoja.on.drv.tw/SRS/proff.html" class="btn">
+ <i class="fa fa-address-card" style="color: #20c4ff;"></i>
+</a>
+    <a href="#" class="btn">
+ <i class="fab fa-instagram" style="color: #e800da"></i>
+</a>
+
+
+<button class="btn" onclick="openModal('8MNJzq9TWW3bsjBs9')">
+    <i class="far fa-envelope"style="color: #3c999f"></i>
+</button>
+
+
+   
+
+<div class="share-options" id="shareOptions">
+    <a href="#" onclick="shareOnWhatsApp()"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
+    <a href="#" onclick="shareOnTelegram()"><i class="fab fa-telegram-plane" style="color:#0088cc;"></i></a>
+    <a href="#" onclick="shareOnFacebook()"><i class="fab fa-facebook-f" style="color:#3b5998;"></i></a>
+    <a href="#" onclick="shareOnX()"><i class="fab fa-twitter" style="color:#1DA1F2;"></i></a>
+    <a href="#" onclick="shareByEmail()"><i class="fas fa-envelope" style="color:#EA4335;"></i></a>
+    <a href="#" onclick="shareOnTakoTalk()"><i class="fas fa-comments" style="color:#FF4081;"></i></a>
+    <a href="#" onclick="shareOnReddit()"><i class="fab fa-reddit-alien" style="color:#FF4500;"></i></a>
+    <a href="#" onclick="shareOnVK()"><i class="fab fa-vk" style="color:#4B75A0;"></i></a>
+    <a href="#" onclick="shareOnOK()"><i class="fab fa-odnoklassniki" style="color:#F47320;"></i></a>
+    <a href="#" onclick="shareOnPinterest()"><i class="fab fa-pinterest-p" style="color:#E60023;"></i></a>
+    <a href="#" onclick="shareOnBlogger()"><i class="fab fa-blogger-b" style="color:#FF5722;"></i></a>
+    <a href="#" onclick="shareOnTumblr()"><i class="fab fa-tumblr" style="color:#35465C;"></i></a>
+    <a href="#" onclick="shareOnLinkedIn()"><i class="fab fa-linkedin-in" style="color:#0077B5;"></i></a>
+    <a href="#" onclick="shareOnMix()"><i class="fab fa-mix" style=""></i></a>
+    <a href="#" onclick="shareOnGoo()"><i class="fas fa-globe"></i></a>
+    <a href="#" onclick="copyLink()"><i class="fas fa-copy"></i></a>
+	<button class="close-btn" onclick="closeShareOptions()">
+        <i class="fa fa-times" style="color: #ff0000;"></i>
+</div>
+<a href="#" class="btn" id="accordionToggle">
+  <i class="fas fa-download" style="color: #ff0000;"></i>
+</a>
+
+<div id="accordionPanel" class="accordion-panel">
+  <div class="panel-content">
+    <!-- دکمه بستن -->
+    <button class="close-btn" id="closeBtn">
+      <i class="fas fa-times"></i> <!-- آیکون بستن -->
+    </button>
+    
+    <div class="panel-header">
+      <p>لطفا جهت نصب نوع سیستم عامل را مشخص کنید</p>
+    </div>
+    <div class="os-buttons">
+      <button onclick="download('android')" class="btn-os">
+        <i class="fab fa-android"></i> اندروید
+      </button>
+      <button onclick="download('ios')" class="btn-os">
+        <i class="fab fa-apple"></i> آی او اس
+      </button>
+      <button onclick="download('windows')" class="btn-os">
+        <i class="fab fa-windows"></i> ویندوز
+      </button>
+      <button onclick="download('mac')" class="btn-os">
+        <i class="fab fa-apple"></i> مک
+      </button>
+    </div>
+  </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<!-- فرم سفارش -->
+<div id="orderFormModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <iframe 
+    src="https://e2iklbcimyvnddowrpbsqq.on.drv.tw/SRS/bussiness form.html" 
+    style="width: 100%; height: 100%; border: none;">
+</iframe>
+  </div>
+      </div>
+    </div>
+  </div>
+  
+<script  src="file/engines/full gallery.js"></script>
+ 
+</body>
+</html>

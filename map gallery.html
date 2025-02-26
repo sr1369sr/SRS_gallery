@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map gallery_SRS</title>
+  
+  <!-- لود کردن CSS Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  
+  <!-- لود کردن کتابخانه‌های JS Leaflet -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> <!-- فونت Poppins -->
+  <link rel="stylesheet" href="file/engines/map gallery style.css">
+   
+	<link rel="icon" href="file/images/srs.ico" type="image/x-icon"> <!-- آیکون -->
+</head>
+<body>
+<div class="header">
+<a href="#" class="btn-shine">جهت حفظ حریم کارفرما، مختصات هر پروژه به صورت محدوده تعیین میگردد</a>
+</div>
+  <div id="container">
+   
+    <button id="sidebar-toggle" class="custom-text-style"><i class="fas fa-bars"></i></button>
+    
+    <div id="sidebar">
+      <header class="custom-text-style">
+        <span>پنل فیلتر و جستجو</span>
+      </header>
+     
+      <input type="text" id="search-input" placeholder="جستجوی مکان یا پروژه..." style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #007bff;" class="custom-text-style">
+      
+      <button id="search-btn" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 5px;" class="custom-text-style">جستجو</button>
+
+      <div class="accordion custom-text-style">فیلتر دسته‌بندی‌ها</div>
+      <div class="filter-content custom-text-style">
+        <label class="filter-label custom-text-style"><input type="checkbox" id="commercial" checked> پروژه‌های تجاری</label><br>
+        <label class="filter-label custom-text-style"><input type="checkbox" id="office" checked> پروژه‌های اداری</label><br>
+        <label class="filter-label custom-text-style"><input type="checkbox" id="cultural" checked> پروژه‌های فرهنگی آموزشی</label><br>
+        <label class="filter-label custom-text-style"><input type="checkbox" id="service" checked> پروژه‌های خدماتی</label><br>
+        <label class="filter-label custom-text-style"><input type="checkbox" id="residential" checked> پروژه‌های مسکونی</label>
+      </div>
+	  <div class="accordion">
+  <button>منو</button>
+  <div class="panel">
+    <a href="https://p88lbdiri8mwtznnslaoja.on.drv.tw/SRS/proff.html"><i class="fas fa-link"></i> پورت فولیو</a>
+    <a href="https://ztdc1xwgjfzz7oaasrqoaw.on.drv.tw/SRS/full gallery.html"><i class="fas fa-link"></i> فول گالری</a>
+    <a href="https://ztdc1xwgjfzz7oaasrqoaw.on.drv.tw/SRS/map gallery.html"><i class="fas fa-link"></i> مپ گالری</a>
+    <a href="https://e2iklbcimyvnddowrpbsqq.on.drv.tw/SRS/bussiness form.html"><i class="https://e2iklbcimyvnddowrpbsqq.on.drv.tw/SRS/bussiness form.html"></i> فرم سفارش بازدید</a>
+  
+  </div>
+</div>
+	</div>
+
+    <!-- بخش آیفریم -->
+    <div id="iframe-container">
+	   
+      <iframe id="iframe-display" src="" title="Iframe"></iframe>
+    </div>
+
+    <!-- بخش نقشه -->
+    <div id="map-container">
+      <!-- نقشه -->
+      <div id="map" style="height: 100%;"></div>
+    </div>
+  </div>
+</body>
+
+
+   <script  src="file/engines/map gallery script.js"></script>
+</body>
+</html>
