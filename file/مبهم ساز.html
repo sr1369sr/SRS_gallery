@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مبهم‌ساز حرفه‌ای JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            direction: rtl;
+        }
+        textarea {
+            width: 100%;
+            height: 250px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            font-family: monospace;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .copy-btn {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>مبهم‌ساز حرفه‌ای JavaScript</h1>
+    <p>کد جاوااسکریپت خود را وارد کنید و آن را مبهم کنید:</p>
+
+    <textarea id="inputCode" placeholder="کد جاوااسکریپت خود را وارد کنید..."></textarea><br>
+    <button onclick="obfuscateCode()">مبهم‌سازی کد</button>
+
+    <h3>کد مبهم‌شده:</h3>
+    <pre id="outputCode"></pre>
+    <button class="copy-btn" onclick="copyToClipboard()">کپی کد مبهم‌شده</button>
+
+    <script>
+        function obfuscateCode() {
+            const code = document.getElementById('inputCode').value;
+
+            // اجرای مبهم‌سازی
+            const obfuscatedCode = fullObfuscate(code);
+
+            // نمایش کد مبهم‌شده
+            document.getElementById('outputCode').textContent = obfuscatedCode;
+        }
+
+        function fullObfuscate(code) {
+            let obfuscatedCode = code;
+
+            // تغییر نام متغیرها و توابع به رشته‌های تصادفی
+            let randomVarNames = {};
+            
+            // تغییر نام متغیرها و توابع با استفاده از regex
+            obfuscatedCode = obfuscatedCode.replace(/\b([a-zA-Z_][a-zA-Z0-9_]*)\b/g, function(match) {
+                // توابع و کلمات رزرو شده را تغییر ندهیم
+                const reservedWords = ["let", "var", "const", "function", "return", "if", "else", "for", "while", "console", "log"];
+                if (reservedWords.includes(match)) return match;
+
+                // اگر نام متغیر قبلاً تغییر کرده باشد، همان نام را برمی‌گردانیم
+                if (!randomVarNames[match]) {
+                    randomVarNames[match] = "_" + Math.random().toString(36).substring(2, 7); // رشته تصادفی
+                }
+                return randomVarNames[match];
+            });
+
+            // حذف کامنت‌ها (هم خطی و چندخطی)
+            obfuscatedCode = obfuscatedCode.replace(/\/\/.*$/gm, ''); // حذف کامنت‌های یک خطی
+            obfuscatedCode = obfuscatedCode.replace(/\/\*[\s\S]*?\*\//g, ''); // حذف کامنت‌های چندخطی
+
+            // حذف فضای اضافی، اما حفظ ساختار
+            obfuscatedCode = obfuscatedCode.replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+
+            // اصلاح فرمت و ایجاد فواصل منطقی بین خطوط
+            obfuscatedCode = obfuscatedCode.replace(/{\s+/g, '{\n');
+            obfuscatedCode = obfuscatedCode.replace(/\s+}/g, '\n}');
+
+            return obfuscatedCode;
+        }
+
+        // تابع کپی کد مبهم‌شده به کلیپ‌بورد
+        function copyToClipboard() {
+            const outputCode = document.getElementById('outputCode').textContent;
+            const textarea = document.createElement('textarea');
+            textarea.value = outputCode;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert("کد مبهم‌شده کپی شد!");
+        }
+    </script>
+
+</body>
+</html>

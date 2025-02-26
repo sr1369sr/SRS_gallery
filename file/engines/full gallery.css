@@ -1,0 +1,855 @@
+body {
+      margin: 0;
+      font-family: 'Vazir', sans-serif;
+      background: #e0e5ec;
+      overflow-x: hidden;
+      transition: margin-left 0.3s ease;
+    }
+#sidebar-toggle {
+      position: fixed;
+      top: 2px;
+      right: 8px;
+      z-index: 1001;
+      background: #e0e5ec;
+      color: #007bff;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2), -3px -3px 10px rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+    }
+
+    #sidebar-toggle:hover {
+      box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.2), inset -3px -3px 8px rgba(255, 255, 255, 0.7);
+      transform: scale(1.1);
+    }
+
+    #sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100%;
+      width: 250px;
+      overflow-y: auto;
+	  overflow-x: hidden; /* غیرفعال‌سازی پیمایش افقی */
+      transition: right 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      z-index: 1000;
+     
+      background: #e0e5ec;
+      box-shadow: -10px 0px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    #sidebar.open {
+      right: 0;
+    }
+
+    #sidebar header {
+      padding: 7px;
+      display: flex;
+      justify-content: space-between;
+      text-align: center; /* اضافه کردن این خط */
+  width: 100%; /* اضافه کردن این خط */
+  display: block; /* اضافه کردن این خط */
+      background: #007bff;
+      color: white;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #sidebar header span {
+      font-size: 17px;
+      font-weight: bold;
+    }
+	.accordion {
+  margin: 20px 15px;
+}
+
+.accordion button {
+  width: 100%;
+  color: #006aff;
+  padding: 5px;
+  background: #e0e5ec;
+  border: none;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2), -3px -3px 8px rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Vazir', sans-serif;
+}
+
+.accordion button:hover {
+  background: #007bff;
+  color: white;
+}
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease, visibility 0.3s ease;
+  background: #e0e5ec;
+  padding: 0; /* حذف پدینگ در حالت بسته */
+  margin: 0; /* حذف مارجین در حالت بسته */
+  border-radius: 12px;
+}
+
+.panel.open {
+  max-height: 500px; /* ارتفاع کافی برای محتوا */
+  visibility: visible;
+  opacity: 1;
+  padding: 10px; /* اضافه شدن پدینگ در حالت باز */
+  margin: 5px 0; /* اضافه شدن مارجین در حالت باز */
+}
+
+.panel a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  background: #c9b2ff;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2), -3px -3px 8px rgba(255, 255, 255, 0.7);
+  transition: background 0.3s ease;
+}
+
+.panel a:hover {
+  background: #007bff;
+  color: white;
+}
+
+    .clock {
+      font-size: 15px;
+	  color: #006aff;
+      text-align: center;
+      margin: 20px 15px;
+      padding: 2px;
+      background: #e0e5ec;
+      border-radius: 12px;
+      box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.2), inset -3px -3px 8px rgba(255, 255, 255, 0.7);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 10px;
+    }
+
+    .footer a {
+      margin: 0 10px;
+      color: #007bff;
+      text-decoration: none;
+      font-size: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer a:hover {
+      transform: scale(1.2);
+      color: #0056b3;
+    }
+
+    /* واکنش‌گرایی */
+    @media (min-width: 1025px) {
+      #sidebar {
+        width: 25%;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+      #sidebar {
+        width: 25%;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+      #sidebar {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #sidebar {
+        width: 100%;
+      }
+    }
+	
+ /* انیمیشن نوشته */ /* انیمیشن نوشته */ /* انیمیشن نوشته */ /* انیمیشن نوشته */
+	
+	/* From Uiverse.io by neerajbaniwal */ 
+.btn-shine {
+ text-align: center;
+ 
+  padding: 2px 48px;
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+@-moz-keyframes shine {
+  100% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  0% {
+    background-position: 300px;
+  }
+}
+@-webkit-keyframes shine {
+  100% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  0% {
+    background-position: 300px;
+  }
+}
+@-o-keyframes shine {
+  100% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  0% {
+    background-position: 300px;
+  }
+}
+@keyframes shine {
+  100% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  0% {
+    background-position: 300px;
+  }
+}
+
+
+p span {
+  opacity: 0;
+  display: inline-block;
+  animation: fadeIn 0.5s ease-in-out forwards; /* تنظیم انیمیشن ظاهر شدن */
+  text-align: right;
+  direction: rtl;
+  margin-left: 5px; /* فاصله کم بین کلمات */
+  white-space: nowrap; /* جلوگیری از شکسته شدن خطوط */
+}
+.sidebar-iframe {
+      width: 90%;
+      height: auto;
+      border: none;
+      margin: 10px;
+      border-radius: 10px 10px 10px 10px;
+       box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.75), -4px -4px 16px rgba(255, 255, 255, 0.1);
+    }
+	
+
+.btn{
+  height: 35px;
+  width: 35px;
+  border-radius: 3px;
+  background: #e0e5ec;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001,
+   inset 0px 0px 0px 0px #fff9,
+   inset 0px 0px 0px 0px #0001,
+   inset 0px 0px 0px 0px #fff9,        inset 0px 0px 0px 0px #0001;
+ transition:box-shadow 0.6s cubic-bezier(.79,.21,.06,.81);
+  font-size: 16px;
+  color: rgba(42, 52, 84, 1);
+  text-decoration: none;
+}
+/* هدر */
+       .header {
+  background: rgba(255, 255, 255, 0.57);
+  color: #333;
+  width: 100%;
+   position: sticky;
+   top: 0;
+   z-index: 1000;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001;
+  border-radius: 10px;
+  transition: box-shadow 0.6s cubic-bezier(.79, .21, .06, .81);
+}
+p {
+  margin: 0em 1em 1em 1em;
+  font-size: 1.5rem;
+}
+
+h1, p {
+  text-align: right;
+  line-height: 1.8;
+  font-family: 'Poppins', sans-serif;
+}
+
+.glowIn {
+  color: #529291;
+}
+
+.glowIn span {
+  animation: glow-in 0.8s both;
+}
+
+@keyframes glow-in {
+  from {
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+    text-shadow: 0 0 25px white;
+  }
+  75% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+		
+		
+.frame{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  position: relative;
+   box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001,
+   inset 0px 0px 0px 0px #fff9,
+   inset 0px 0px 0px 0px #0001,
+   inset 0px 0px 0px 0px #fff9,        inset 0px 0px 0px 0px #0001;
+ transition:box-shadow 0.6s cubic-bezier(.79,.21,.06,.81);
+   border-radius: 10px;
+}
+.frame2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap; /* این خط اضافه شود */
+  height: auto; /* تنظیم خودکار ارتفاع */
+  width: 10%; /* استفاده کامل از عرض موجود */
+  max-width: 200px; /* حداکثر عرض */
+  box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001;
+  border-radius: 10px;
+  transition: box-shadow 0.6s cubic-bezier(.79, .21, .06, .81);
+}	
+.btn:active{
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+}
+.close-btn {
+    background: none;
+    border: none;
+    color: #ff0000;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.share-options {
+  display: none; /* به صورت پیش‌فرض مخفی است */
+  position: fixed; /* ثابت در صفحه */
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+  border-radius:50px;
+  background-color: rgba(255, 255, 255, 0.36); /* پس‌زمینه شفاف سیاه */
+  backdrop-filter: blur(2px);
+  justify-content: center; /* محتوای داخل را در وسط قرار می‌دهد */
+  align-items: center; /* عمودی مرکزچینی */
+  z-index: 9999; /* اطمینان از اینکه پنل بالاتر از دیگر عناصر باشد */
+}
+
+
+.share-options a {
+    display: inline-block; /* تغییر به inline-block برای نمایش در یک ردیف */
+    margin: 0 5px; /* فاصله افقی بین آیکون‌ها */
+    text-decoration: none;
+    color: #3b1dff;
+}
+
+        .share-options i {
+            margin-left: 5px; /* فاصله بین آیکون و متن */
+        }
+		.modal {
+    display: none; /* پاپ‌آپ به طور پیش‌فرض مخفی است */
+    position: fixed; /* ثابت در کل صفحه */
+    z-index: 1000; /* بالاترین اولویت برای نمایش روی دیگر محتوا */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* مخفی کردن اسکرول اضافی */
+    background-color: rgba(0, 0, 0, 0.6); /* پس‌زمینه نیمه شفاف */
+    backdrop-filter: blur(5px); /* افزودن افکت تاری به پس‌زمینه (اختیاری) */
+}
+ .modal-content {
+    background-color:  #00c3ff1f; /* رنگ پس‌زمینه */
+    margin: 5% auto; /* فاصله از بالا و تراز افقی */
+    padding: 20px;
+    border-radius: 12px; /* لبه‌های گرد */
+    width: 100%; /* عرض نسبی پاپ‌آپ */
+    height: 100%; /* ارتفاع نسبی پاپ‌آپ */
+    max-width: 900px; /* محدودیت حداکثر عرض */
+    max-height: 700px; /* محدودیت حداکثر ارتفاع */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* سایه زیبا */
+    position: relative;
+    overflow-y: auto; /* اسکرول عمودی در صورت محتوای زیاد */
+}
+/* پس‌زمینه مودال با شفافیت */
+.accordion-panel {
+  display: none; /* به صورت پیش‌فرض مخفی است */
+  position: fixed; /* ثابت در صفحه */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(151, 0, 255, 0); /* پس‌زمینه شفاف سیاه */
+  backdrop-filter: blur(2px);
+  justify-content: center; /* محتوای داخل را در وسط قرار می‌دهد */
+  align-items: center; /* عمودی مرکزچینی */
+  z-index: 9999; /* اطمینان از اینکه پنل بالاتر از دیگر عناصر باشد */
+}
+
+/* پنل محتوا */
+.panel-content {
+  background-color:  #0028ff70; /* پس‌زمینه سفید */
+  padding: 20px;
+  border-radius: 10px; /* گوشه‌های گرد */
+  width: 80%;
+  max-width: 500px; /* حداکثر عرض */
+  text-align: center; /* متن را وسط چین می‌کند */
+  position: relative; /* برای قرار دادن دکمه بسته در موقعیت صحیح */
+}
+
+/* نوشته بالای پنل */
+.panel-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px; /* فاصله بین نوشته و دکمه‌ها */
+}
+
+/* دکمه‌ها در یک ردیف */
+.os-buttons {
+  display: flex;
+  justify-content: space-evenly; /* فاصله یکنواخت بین دکمه‌ها */
+  gap: 10px;
+}
+
+/* استایل دکمه‌ها */
+.btn-os {
+  padding: 10px;
+  background-color: #a300ffa6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.btn-os i {
+  margin-right: 5px;
+}
+
+.btn-os:hover {
+  background-color: #0056b3;
+}
+
+/* دکمه بسته شدن */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #ff0000;
+}
+#theme-toggle  {
+  position: fixed;
+  top: 2px;
+  left: 101px;
+  background: linear-gradient(41deg, #a700acb5, #3600ff);
+    background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px 5px rgba(0, 183, 255, 0.3);
+  z-index: 1000;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#theme-toggle:hover {
+	transform: translateY(3px); /* جابجایی جزئی هنگام هاور */
+    background-color: #0056b3; /* تغییر رنگ پس‌زمینه هنگام هاور */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e0e5ec; /* رنگ پس‌زمینه روشن */
+    color: #333; /* رنگ متن تیره */
+}
+
+body.dark-mode {
+    background-color: #001728; /* رنگ پس‌زمینه تیره */
+    color: #ffffff; /* رنگ متن روشن */
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    background-color: #e0e5ec; /* رنگ پس‌زمینه هدر */
+    color: #333; /* رنگ متن هدر */
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* سایه ملایم */
+}
+
+body.dark-mode h1 {
+    background-color: #001728; /* رنگ پس‌زمینه هدر در حالت تیره */
+    color: #ffffff; /* رنگ متن هدر در حالت تیره */
+}
+
+#iframes-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* چهار ستون برای دسکتاپ */
+    gap: 20px;
+    padding: 20px;
+}
+
+#iframes-container div {
+    display: flex; /* استفاده از flexbox برای مرکز کردن محتوا */
+    flex-direction: column; /* ترتیب عمودی */
+    justify-content: center; /* مرکز قرار دادن عمودی */
+    align-items: center; /* مرکز قرار دادن افقی */
+    background-color: #e0e5ec; /* رنگ پس‌زمینه آیفریم‌ها */
+    padding: 10px;
+    border-radius: 20px; /* گرد کردن گوشه‌ها */
+    box-shadow: 8px 8px 15px rgba(200, 200, 200, 0.5), 
+                -8px -8px 15px rgba(255, 255, 255, 0.7); /* سایه‌های نرم برای ایجاد افکت Newmorphism */
+    transition: transform 0.3s, box-shadow 0.3s; /* انیمیشن برای افکت‌ها */
+}
+
+body.dark-mode #iframes-container div {
+           background-color: #021757ad;
+  box-shadow: 4px 4px 10px rgba(68, 0, 255, 0.76), -4px -4px 10px rgba(255, 0, 203, 0.7);
+}
+
+#iframes-container div:hover 
+    {
+  transform: translateY(-5px);
+  box-shadow: 4px 4px 10px rgba(0, 109, 225, 0.5), -4px -4px 10px rgba(255, 0, 0, 0.7);
+}
+
+iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 10px; /* گرد کردن گوشه‌های آیفریم */
+}
+
+.categories {
+    display: none !important; /* اطمینان از مخفی بودن دسته‌بندی‌ها */
+}
+
+/* در حالت تبلت: دو ستون */
+@media (max-width: 768px) {
+    #iframes-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* در حالت موبایل: یک ستون */
+@media (max-width: 480px) {
+    #iframes-container {
+        grid-template-columns: 1fr;
+        padding: 10px; /* کاهش پدینگ در موبایل */
+    }
+}
+
+ /* دکمه باز/بسته کردن */
+        #toggle-filter-btn {
+            position: fixed;
+            top: 2px;
+            left: 5px;
+            background: linear-gradient(41deg, #c700ff, #3600ff);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0px 0px 5px 5px rgb(176 0 255 / 42%);
+            z-index: 1002;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        #toggle-filter-btn:hover {
+			transform: translateY(3px); /* جابجایی جزئی هنگام هاور */
+            background: linear-gradient(45deg, #0088cc, #008855);
+            transform: scale(1.05);
+        }
+
+/* پنل فیلتر */
+.filter-panel {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 320px;
+  height: 80vh;
+  background: rgba(0, 4, 255, 0.24);
+  border-radius: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0 8px 15px rgba(255, 0, 0, 0.3);
+  color: white;
+  z-index: 1001;
+  transform: translateX(-350px);
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+
+.filter-panel.open {
+    transform: translateX(0);
+}
+
+.filter-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* استایل دسته‌ها */
+.category {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.category h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #00ffaa;
+    cursor: pointer;
+}
+
+/* استایل زیرمنو */
+.submenu {
+    display: none;
+    padding: 10px 0 0;
+}
+
+.submenu.open {
+    display: block;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    accent-color: #00ffaa;
+    transform: scale(1.2);
+}
+
+/* استایل دکمه‌ها */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.filter-action-btn {
+    flex: 1;
+    background: linear-gradient(41deg, #0300ff, #ff004d);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-action-btn:hover {
+			transform: translateY(3px); /* جابجایی جزئی هنگام هاور */
+            background: linear-gradient(45deg, #0088cc, #008855);
+            transform: scale(1.05);
+        }
+.footer {
+            background-color: transparent;
+            color: #2196F3;
+            padding: 5px 10px;
+            text-align: center;
+            position: relative;
+            margin-top: 20px;
+            border: 2px solid #2196F3;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            border-radius: 8px;
+            animation: glow 1.5s ease-in-out infinite;
+        }
+		@keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #2196F3, 0 0 10px #2196F3, 0 0 20px #2196F3;
+                box-shadow: 0 0 5px #2196F3, 0 0 10px #2196F3, 0 0 20px #2196F3;
+            }
+            50% {
+                text-shadow: 0 0 10px #2196F3, 0 0 20px #2196F3, 0 0 30px #2196F3;
+                box-shadow: 0 0 10px #2196F3, 0 0 20px #2196F3, 0 0 30px #2196F3;
+            }
+            100% {
+                text-shadow: 0 0 5px #2196F3, 0 0 10px #2196F3, 0 0 20px #2196F3;
+                box-shadow: 0 0 5px #2196F3, 0 0 10px #2196F3, 0 0 20px #2196F3;
+            }
+        }
+		
+/* دکمه فرم رزرو */
+
+.add-rezerve-button  {
+  position: fixed;
+  top: 2px;
+  left: 47px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: linear-gradient(45deg, #08c, #880086);
+    background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 33px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 1000;
+   transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.add-rezerve-button:hover {
+			transform: translateY(3px); /* جابجایی جزئی هنگام هاور */
+            background: linear-gradient(45deg, #0088cc, #008855);
+            transform: scale(1.05);
+        }
+
+/* پنل فرم رزرو*/
+
+.modal {
+    display: none; /* پاپ‌آپ به طور پیش‌فرض مخفی است */
+    position: fixed; /* ثابت در کل صفحه */
+    z-index: 1000; /* بالاترین اولویت برای نمایش روی دیگر محتوا */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* مخفی کردن اسکرول اضافی */
+    background-color: rgba(0, 0, 0, 0.6); /* پس‌زمینه نیمه شفاف */
+    backdrop-filter: blur(5px); /* افزودن افکت تاری به پس‌زمینه (اختیاری) */
+}
+
+  .modal-content {
+    background-color: #fff; /* رنگ پس‌زمینه */
+    margin: 5% auto; /* فاصله از بالا و تراز افقی */
+    padding: 20px;
+    border-radius: 12px; /* لبه‌های گرد */
+    width: 100%; /* عرض نسبی پاپ‌آپ */
+    height: 100%; /* ارتفاع نسبی پاپ‌آپ */
+    max-width: 900px; /* محدودیت حداکثر عرض */
+    max-height: 700px; /* محدودیت حداکثر ارتفاع */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* سایه زیبا */
+    position: relative;
+    overflow-y: auto; /* اسکرول عمودی در صورت محتوای زیاد */
+}
+.scroll-link { position: fixed;
+  top: -2px;
+  left: 140px;
+  padding: 9px;
+  background: linear-gradient(280deg, #08c, #880086);
+    background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 21px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+        .scroll-link:hover {
+			transform: translateY(3px); /* جابجایی جزئی هنگام هاور */
+            background: linear-gradient(45deg, #0088cc, #008855);
+            transform: scale(1.05);
+        }
+
+        .scroll-link i {
+            font-size: 20px;
+        }
+		
+		

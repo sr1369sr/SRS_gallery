@@ -1,0 +1,327 @@
+ /* تنظیمات برای کل صفحه */
+    body, html {
+	font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* کانتینر اصلی که صفحه را به دو بخش تقسیم می‌کند */
+    #container {
+      display: flex;
+      height: 100%;
+    }
+
+    /* بخش آیفریم */
+    #iframe-container {
+      width: 50%; /* نصف عرض صفحه */
+      height: 100%; /* ارتفاع کامل */
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* بخش نقشه */
+    #map-container {
+      width: 50%; /* نصف عرض صفحه */
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* طراحی پنل آکاردونی */
+    .accordion {
+    background-color: #00a3ff78;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #00f2ff8c;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+    .accordion:hover {
+      background-color: #4800ff78;
+    }
+
+    /* طراحی محتوای مخفی که با کلیک روی آکاردون نمایش داده می‌شود */
+   .filter-content {
+    display: none;
+    padding: 10px;
+    border-top: 1px solid #0007ff;
+    background-color: #e500ff42;
+}
+
+    /* نمایش چک‌باکس‌ها */
+    .filter-content label {
+      display: block;
+      margin-bottom: 8px;
+    }
+	 #sidebar-toggle {
+    position: fixed;
+    top: 2px;
+    right: 8px;
+    z-index: 1001;
+    background: #6f00ff;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2), -3px -3px 10px rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+    #sidebar-toggle:hover {
+      box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.2), inset -3px -3px 8px rgba(255, 255, 255, 0.7);
+      transform: scale(1.1);
+    }
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    width: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: right 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 1000;
+    background: rgb(16 52 102 / 71%);
+    box-shadow: -6px -1px 12px 2px rgb(0 6 249 / 42%);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+    #sidebar.open {
+      right: 0;
+    }
+
+    #sidebar header {
+      padding: 7px;
+      display: flex;
+      justify-content: space-between;
+      text-align: center; /* اضافه کردن این خط */
+  width: 100%; /* اضافه کردن این خط */
+  display: block; /* اضافه کردن این خط */
+      background: #007bff;
+      color: white;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #sidebar header span {
+      font-size: 17px;
+      font-weight: bold;
+	  }
+	   .filter-label {
+    font-family: 'Poppins', sans-serif; /* فونت مدرن و زیبا */
+    font-size: 16px;
+    color: white;
+    display: inline-block;
+    margin: 8px 0;
+  }
+.leaflet-popup-content {
+  background-color: ##0767ff7d; /* رنگ پس‌زمینه */
+  color: white; /* رنگ متن */
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 0 3px 14px rgb(203 0 255 / 78%);
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #0767ff80;
+    color: #333;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+	 border-radius: 50px;
+	 box-shadow:  rgb(0, 0, 0);
+    backdrop-filter: blur(0.5px);
+	 
+	 
+}
+
+.leaflet-container a {
+    color: #ffffff;
+}
+
+.custom-text-style {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #d7d7d7
+  
+  padding: 1px;
+  letter-spacing: 1px;
+}
+.leaflet-marker-icon.custom-icon {
+
+  border: 2px solid #6800ffa6;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(255, 0, 203, 0.3);
+   animation: glow 1.5s ease-in-out infinite;
+}
+@keyframes glow {
+ 0% {
+    text-shadow: 0 0 5px #ff0000, 0 0 10px #f32121, 0 0 20px #f32121;
+    box-shadow: 0 0 5px #cb00ff, 0 0 10px #9100c3, 0 0 20px #d300b2;
+}
+50% {
+    text-shadow: 0 0 10px #ff00f2, 0 0 20px #7300c4, 0 0 30px #f321dd;
+    box-shadow: 0 0 10px #ff00be, 0 0 20px #e821f378, 0 0 30px #2151f3;
+}
+100% {
+    text-shadow: 0 0 5px #2196F3, 0 0 10px #2196F3, 0 0 20px #2196F3;
+    box-shadow: 0 0 5px #2196F3, 0 0 10px #2196F3, 0 0 20px #2196F3;
+}
+}
+/* From Uiverse.io by neerajbaniwal */ 
+.btn-shine {
+ text-align: center;
+ 
+  padding: 2px 48px;
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+@-moz-keyframes shine {
+  100% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  0% {
+    background-position: 300px;
+  }
+}
+@-webkit-keyframes shine {
+  100% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  0% {
+    background-position: 300px;
+  }
+}
+@-o-keyframes shine {
+  100% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  0% {
+    background-position: 300px;
+  }
+}
+@keyframes shine {
+  100% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  0% {
+    background-position: 300px;
+  }
+}
+/* هدر */
+       .header {
+  background: rgba(255, 255, 255, 0.57);
+  color: #333;
+  width: 100%;
+   position: sticky;
+   top: 0;
+   z-index: 1000;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001;
+  border-radius: 10px;
+  transition: box-shadow 0.6s cubic-bezier(.79, .21, .06, .81);
+}
+.accordion {
+  margin: 20px 15px;
+}
+
+.accordion button {
+  width: 100%;
+  color: #006aff;
+  padding: 5px;
+  background: #e0e5ec;
+  border: none;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2), -3px -3px 8px rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Vazir', sans-serif;
+}
+
+.accordion button:hover {
+  background: #007bff;
+  color: white;
+}
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease, visibility 0.3s ease;
+  background: #e0e5ec;
+  padding: 0; /* حذف پدینگ در حالت بسته */
+  margin: 0; /* حذف مارجین در حالت بسته */
+  border-radius: 12px;
+}
+
+.panel.open {
+  max-height: 500px; /* ارتفاع کافی برای محتوا */
+  visibility: visible;
+  opacity: 1;
+  padding: 10px; /* اضافه شدن پدینگ در حالت باز */
+  margin: 5px 0; /* اضافه شدن مارجین در حالت باز */
+}
+
+.panel a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  background: #c9b2ff;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2), -3px -3px 8px rgba(255, 255, 255, 0.7);
+  transition: background 0.3s ease;
+}
+
+.panel a:hover {
+  background: #007bff;
+  color: white;
+}
